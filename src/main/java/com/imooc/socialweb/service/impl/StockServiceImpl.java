@@ -47,6 +47,18 @@ public class StockServiceImpl extends ServiceImpl<StockMapper, Stock> implements
         return stock;
     }
 
+    @Override
+    public boolean decreaseStock(Integer skuId, Integer shopId, Integer stockCount) {
+        int affectedRow = getBaseMapper().decreaseStock(skuId, shopId, stockCount);
+        return affectedRow > 0 ? true : false;
+    }
+
+    @Override
+    public boolean tradeRollbackStock(Integer skuId, Integer shopId, Integer stockCount) {
+        int affectedRow = getBaseMapper().tradeRollbackStock(skuId, shopId, stockCount);
+        return affectedRow > 0 ? true : false;
+    }
+
     private void updateStock(Integer skuId, Integer shopId, Integer stockCount){
         QueryWrapper<Stock> wrapper = new QueryWrapper<>();
         wrapper.eq("sku_id", skuId);

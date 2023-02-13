@@ -1,9 +1,9 @@
 # spring-boot-socialweb-demo
 
 
-1.Chapter one user module:
+### 1.Chapter one user module:
 
-````
+```
 CREATE TABLE `user` (
 `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
 `user_name` varchar(60) NOT NULL DEFAULT '',
@@ -16,7 +16,7 @@ PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 ```
 
-2.Chapter 2
+### 2.Chapter 2
 
 ```
 CREATE TABLE `test` (
@@ -153,5 +153,26 @@ CREATE TABLE `stock` (
   `update_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `sku_shop_id_index` (`sku_id`,`shop_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+```
+
+### chapter 3
+
+```
+CREATE TABLE `trade` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `sku_id` int(11) NOT NULL DEFAULT '0',
+  `shop_id` int(11) NOT NULL DEFAULT '0',
+  `stock_count` int(11) NOT NULL DEFAULT '0',
+  `user_id` int(11) NOT NULL DEFAULT '0',
+  `status` int(11) NOT NULL DEFAULT '0',
+  `create_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `single_price` decimal(10,0) DEFAULT NULL,
+  `total_price` decimal(10,0) DEFAULT NULL,
+  `wechat_order_id` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`),
+  KEY `user_id_status_index` (`user_id`,`status`),
+  KEY `wechat_order_id_index` (`wechat_order_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 ```

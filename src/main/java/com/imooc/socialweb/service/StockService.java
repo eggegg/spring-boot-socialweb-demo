@@ -14,4 +14,9 @@ import com.baomidou.mybatisplus.extension.service.IService;
 public interface StockService extends IService<Stock> {
 
     Stock increaseStock(Integer skuId, Integer shopId, Integer stockCount);
+
+    boolean decreaseStock(Integer skuId, Integer shopId, Integer stockCount);
+
+    boolean tradeRollbackStock(Integer skuId, Integer shopId, Integer stockCount);
+
 }

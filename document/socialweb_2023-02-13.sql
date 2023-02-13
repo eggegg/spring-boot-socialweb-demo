@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.34)
 # Database: socialweb
-# Generation Time: 2023-02-10 09:47:00 +0000
+# Generation Time: 2023-02-13 15:23:05 +0000
 # ************************************************************
 
 
@@ -292,7 +292,7 @@ LOCK TABLES `stock` WRITE;
 
 INSERT INTO `stock` (`id`, `sku_id`, `shop_id`, `stock_count`, `create_time`, `update_time`)
 VALUES
-	(1,1,1,400,'2023-02-10 16:19:02','2023-02-10 16:37:22'),
+	(1,1,1,398,'2023-02-10 16:19:02','2023-02-10 16:37:22'),
 	(3,2,1,400,'2023-02-10 16:19:38','2023-02-10 16:36:40');
 
 /*!40000 ALTER TABLE `stock` ENABLE KEYS */;
@@ -321,6 +321,41 @@ VALUES
 	(2,'测试记录2','2023-02-11 00:00:00','2023-02-11 00:00:00');
 
 /*!40000 ALTER TABLE `test` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Dump of table trade
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `trade`;
+
+CREATE TABLE `trade` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `sku_id` int(11) NOT NULL DEFAULT '0',
+  `shop_id` int(11) NOT NULL DEFAULT '0',
+  `stock_count` int(11) NOT NULL DEFAULT '0',
+  `user_id` int(11) NOT NULL DEFAULT '0',
+  `status` int(11) NOT NULL DEFAULT '0',
+  `create_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `single_price` decimal(10,0) DEFAULT NULL,
+  `total_price` decimal(10,0) DEFAULT NULL,
+  `wechat_trade_id` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `wechat_trade_id` (`wechat_trade_id`),
+  KEY `user_id_status_index` (`user_id`,`status`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+LOCK TABLES `trade` WRITE;
+/*!40000 ALTER TABLE `trade` DISABLE KEYS */;
+
+INSERT INTO `trade` (`id`, `sku_id`, `shop_id`, `stock_count`, `user_id`, `status`, `create_time`, `update_time`, `single_price`, `total_price`, `wechat_trade_id`)
+VALUES
+	(1,1,1,1,1,2,'2023-02-13 20:43:03','2023-02-13 23:21:50',8000,8000,'111'),
+	(3,1,1,1,1,3,'2023-02-13 20:50:36','2023-02-13 23:12:40',8000,8000,'222'),
+	(4,1,1,1,1,2,'2023-02-13 21:04:59','2023-02-13 21:13:21',8000,8000,'548387a8-27dd-421c-ba82-c1a9d47fc022');
+
+/*!40000 ALTER TABLE `trade` ENABLE KEYS */;
 UNLOCK TABLES;
 
 
